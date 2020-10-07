@@ -1,0 +1,59 @@
+public class MainActivity extends AppCompatActivity /*Para el metodo 3 implements View.OnClickListener */{
+    EditText et_nombre;
+    Button btn_boton;
+    EditText et_telefono;
+    TextView frase;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //acceder a et_nombre
+        setContentView(R.layout.activity_main);
+        et_nombre=findViewById(R.id.et_nombre);
+        btn_boton=findViewById(R.id.btn_grabar);
+        et_telefono=findViewById(R.id.et_telefono);
+        frase=findViewById(R.id.tv_frase);
+        //Método 1-Crear una variable oyente:
+        View.OnClickListener oyente=new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Lo que quiero que haga cuando se clique
+                String nombre=et_nombre.getText().toString();
+                String telefono=et_telefono.getText().toString();
+                String texto="Te llamas "+nombre +" y tu telefono es "+telefono;
+                frase.setText(texto);
+            }
+        };
+
+
+      btn_boton.setOnClickListener(oyente);
+
+
+      //Método 2: Metere el OnClickListener directamente:
+       /* boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
+       //Método 3: Hago que mi Activity implemente OnClickListener. Hay que poner el implements e implementar el OnClick
+       // boton.setOnClickListener(this);
+
+    //Método 4: Creo una clase aparte que implemente OnClickListener. O en esta clase o fuera
+    //boton.setOnClickListener(new EnanitoEscuchaClicks());
+
+    }
+    /*Esta implementacion del onClick es del método 3
+    @Override
+    public void onClick(View v) {
+        //Lo que quiera que haga al clicar
+    }*/
+/*public class EnanitoEscuchaClicks implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            //Lo que quiero que haga
+        }
+    }*/
+
+}
